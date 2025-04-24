@@ -13,16 +13,11 @@ const PORT = process.env.PORT || 3000;
 
 const dbConfig = {
     host: process.env.HOST || 'localhost',
-    user: 'priyanshu_user',
+    user: process.env.USER,
     password: process.env.PASSWORD || '',
     database: process.env.DB_NAME || 'school_management'
 };
-console.log('Environment Variables:', {
-    HOST: process.env.HOST,
-    USER: process.env.USER,
-    DB_NAME: process.env.DB_NAME,
-    PORT: process.env.PORT
-});
+
 let pool;
 async function initDb() {
     pool = mysql.createPool(dbConfig);
@@ -34,18 +29,7 @@ initDb().catch(
         console.error('Database connection failed:', err);
     }
 );
-/*
-let data;
-async function initDb() {
-    data = await mysql.createPool(dbConfig);  // Use the correct reference `data`
-    console.log('Connected to MySQL database');
-}
 
-initDb().catch(err => {
-    console.error('Database connection failed:', err);
-});
-
-*/
 
 function calculateDistance(x1, y1, x2, y2) {
     const R = 6371;
