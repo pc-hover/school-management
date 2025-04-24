@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+/build
+
+# Optional build outputs folder
+dist/
+build/
+
+# System files
+.DS_Store
+.env
