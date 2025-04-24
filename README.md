@@ -1,6 +1,6 @@
 # School Management API
 
-This project provides a simple API for managing school information, allowing you to add new schools and list schools based on their proximity to a given location.
+This project provides a simple API for managing school information, allowing you to add new schools and list all schools.
 
 ## Installation
 
@@ -78,14 +78,10 @@ Follow these steps to set up and run the project locally:
     * `message`: A message indicating the success of the operation (string).
     * `schoolId`: The unique identifier assigned to the newly added school (number).
 
-### 2. List Schools by Proximity
+### 2. List All Schools
 
 * **Method:** `GET`
 * **Endpoint:** `/listSchools`
-* **Query Parameters:**
-
-    * `latitude`: Latitude of the user (number, required). Example: `/listSchools?latitude=40.7128&longitude=-74.0060`
-    * `longitude`: Longitude of the user (number, required). Example: `/listSchools?latitude=40.7128&longitude=-74.0060`
 
 * **Response:**
 
@@ -96,8 +92,7 @@ Follow these steps to set up and run the project locally:
         "name": "Greenwood High",
         "address": "123 Education Blvd, Boston, MA",
         "latitude": 42.3601,
-        "longitude": -71.0589,
-        "distance": 0
+        "longitude": -71.0589
       }
     ]
     ```
@@ -109,8 +104,24 @@ Follow these steps to set up and run the project locally:
     * `address`: The address of the school (string).
     * `latitude`: The latitude of the school (number).
     * `longitude`: The longitude of the school (number).
-    * `distance`: The distance between the provided user coordinates and the school's coordinates (number). The units of distance will depend on the calculation method used (likely kilometers or miles).
 
+## SQL Setup
+
+Before running the application, ensure you have a MySQL database set up according to the environment variables in your `.env` file. You can use the following SQL commands to create the database and the `schools` table:
+
+```sql
+CREATE DATABASE school_management;
+
+USE school_management;
+
+CREATE TABLE schools (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    latitude FLOAT NOT NULL,
+    longitude FLOAT NOT NULL
+);
+```
 ## Deployment
 
 The API is currently deployed and accessible at the following URL:
